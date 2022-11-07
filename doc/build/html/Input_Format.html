@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Input File Format &#8212; DiscTransformation 2.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/toggleprompt.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="API" href="api.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="input-file-format">
+<h1>Input File Format<a class="headerlink" href="#input-file-format" title="Permalink to this heading">¶</a></h1>
+<p><strong>DiscTransformation Input Files</strong></p>
+<p>Disctransformation needs a minimum one input file to generate configurations. This file is specified by the parameter <code class="docutils literal notranslate"><span class="pre">input_dtfile</span></code> in the example wrapper functions. The input file is in text format with parameters starting with tag <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>. All blank lines and lines start with <code class="docutils literal notranslate"><span class="pre">#</span></code> will be ignored.</p>
+<p>A single runs examples such as <code class="docutils literal notranslate"><span class="pre">example_single_run()</span></code> and <code class="docutils literal notranslate"><span class="pre">example_single_run_withpdb()</span></code> uses a ten argument file. These are tagged as &#64;ARG1, &#64;ARG2 .. &#64;ARG10. These are the core arguments for a Disctransformation. Arguments &#64;ARG8 and &#64;ARG9 are optional.</p>
+<p>A sampling/ensemble run example <code class="docutils literal notranslate"><span class="pre">example_sampling_run()</span></code> uses extra six arguments tagged as &#64;ARG11, &#64;ARG12, &#64;ARG13, &#64;ARG14, &#64;ARG15, &#64;ARG16. Sampling runs ignores arguments &#64;ARG3, &#64;ARG5. Arguments &#64;ARG8 and &#64;ARG9 are optional.</p>
+<p>Disctransformation also requires PDB file as input, if a user wants to generate a PDB model from the Disctransformation Model. This can be specified by the parameter ‘input_pdb’. This is also accompanied by parameter ‘output_dir’ that specifies the directory to store all generated models.</p>
+<p>A typical input file for the ‘single run’ looks like following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@ARG1</span> <span class="mi">2</span>
+<span class="nd">@ARG2</span> <span class="mi">23</span>
+<span class="nd">@ARG3</span> <span class="mi">0</span>
+<span class="nd">@ARG4</span> <span class="n">yes</span>
+<span class="nd">@ARG5</span> <span class="n">A</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">150</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">0</span>
+<span class="nd">@ARG6</span>
+<span class="o">-</span><span class="n">A</span>
+<span class="o">--</span>
+<span class="nd">@ARG7</span> <span class="o">./</span><span class="n">Disctransformation</span><span class="o">/</span><span class="n">example</span><span class="o">/</span><span class="n">output_gpcr</span><span class="o">/</span><span class="n">DT_GPCR_Dimer</span><span class="o">.</span><span class="n">ps</span>
+<span class="nd">@ARG8</span> <span class="mi">46</span>
+<span class="nd">@ARG9</span> <span class="mi">20</span>
+<span class="nd">@ARG10</span> <span class="mi">1972243</span>
+</pre></div>
+</div>
+<p>And input file for the ‘sampling run’ looks like following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@ARG1</span> <span class="mi">3</span>
+<span class="nd">@ARG2</span> <span class="mi">23</span> <span class="c1">#Set 0 If you want to auto-calculate radius using pdb file</span>
+<span class="nd">@ARG4</span> <span class="n">yes</span>
+<span class="nd">@ARG6</span>
+<span class="o">-</span><span class="n">A</span><span class="o">-</span>
+<span class="o">--</span><span class="n">A</span>
+<span class="o">---</span>
+<span class="nd">@ARG7</span> <span class="o">./</span><span class="n">Disctransformation</span><span class="o">/</span><span class="n">example</span><span class="o">/</span><span class="n">output_gpcr_ensemble_1mode</span><span class="o">/</span><span class="n">DT_GPCR_Trimer</span><span class="o">.</span><span class="n">ps</span>
+<span class="nd">@ARG11</span> <span class="mf">0.5</span>
+<span class="nd">@ARG12</span> <span class="mi">120</span>
+<span class="nd">@ARG13</span> <span class="mi">5</span>
+<span class="nd">@ARG14</span> <span class="n">yes</span>
+<span class="nd">@ARG15</span> <span class="n">yes</span>
+<span class="nd">@ARG16</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>Following are the details of each parameters.</p>
+<p>ARG(1):Number of Disc, N (discs will be labeled 0..(N-1))</p>
+<p>ARG(2):Radius of Discs</p>
+<p>ARG(3):Overlap distanvce or Distance between the circumference of the discs. Distance between disc centres would hence be = (2*radius + specified distance). Negative numbers would make the discs to overlap.</p>
+<p>ARG(4): Add label to each disc (Yes/No)</p>
+<p>ARG(5): List of Modes of association: Mode name (column 1), rotation of disc x about its radius vector (column 2), rotation of disc y about its radius vector (column 3), Relative arrangement of the discs, 1 for parallel and 0 for anti-parallel (column 4), Relative axial distance between disc (third dimension) (column 5). Each disc can have multiple neighbours. The program will NOT check for logical consistency of the relative placement of disc, for example, confliciting assignments of neighbours - in which case the last neighbour assignment overwites previous records.</p>
+<p>ARG(6): Square Adjacency matrix providing the connections between discs numbered from 0 to N-1.</p>
+<p>ARG(7): Output file for printing the model for visualization.</p>
+<p>ARG(8): Maximum distance between two disc centers for possible interaction. This will be used to identify new interactions that might happen.  This includes 2*ARG(2)+ARG(3)+relaxtion distance. Default value is 50 having relaxation distance 5 units</p>
+<p>ARG(9): Minimum distance allowed between any two discs centers. Below that any distance will be treated as clash. This can be taken as (2 * radius - overlapp% of radius). For example: for radius 27 and overlapp percentage as 50% of along the radius. Then arg(7) is (2*27- 0.5*27)=40.5</p>
+<p>ARG(10): Unique identifier to be used during sampling to identify the best model.</p>
+<p>#ARGUMENTS &#64;ARG11 to &#64;ARG16 will be skipped for single runs. These arguments are used only for automated sampling. See example input files.</p>
+<p>ARG(11): Maximum Disc overlap fraction for starting configurations for sampling. For instance, With radius=20 and overlap fraction = 0.5, indicates starting disc configuration will overlap 50% of disc.</p>
+<p>ARG(12): Rotation step for each disc for sampling.</p>
+<p>ARG(13): Translation step for each disc til disc overlap is zero during sampling.</p>
+<p>ARG(14): (yes/no) Save Disc Models for All samples; Avoid slow.</p>
+<p>ARG(15): (yes/no) Save PDB Models for All samples; Avoid very slow.</p>
+<p>ARG(16): (yes/no) Save Disctransformation Input files for All samples; This file can be used after sampling to generate PDB models for best configuration.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">DiscTransformation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Disctransformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input File Format</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="api.html" title="previous chapter">API</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Neelesh Soni.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Input_Format.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

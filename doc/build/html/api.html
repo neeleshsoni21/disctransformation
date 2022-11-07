@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>API &#8212; DiscTransformation 2.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/toggleprompt.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Input File Format" href="Input_Format.html" />
+    <link rel="prev" title="Requirements" href="Requirements.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h1>
+<p><strong>DiscTransformation</strong></p>
+<p>This is a demonstration so will be largely conducted in the terminal. An example file is also provided in the example module for automated test run of DiscTransformation. These could also be used as a template for sampling.</p>
+<p>An example of the code that execute DiscTransformation on the built-in example pdb</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Disctransformation</span> <span class="k">as</span> <span class="nn">DT</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">DT</span><span class="o">.</span><span class="n">example_single_run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Above code will take default input and generate output in the output directory listed in the input file. Default input directory is Disctransformation/example/input/.</p>
+<p>Following are the default input and output files:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gpcr_dimer.txt</span></code> : Disctransformation default input file to illustrate single run. See Input file format for more details.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DT_GPCR_Dimer.ps</span></code> : Default output file corresponds to the above input file. This post-script file displays the orientation of the Quasi-2D model.</p></li>
+</ol>
+</div></blockquote>
+<p>Above command is equivalent to the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DT</span><span class="o">.</span><span class="n">example_single_run</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_dtfile</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/gpcr_dimer.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Above Disctransformation run, uses the <code class="docutils literal notranslate"><span class="pre">gpcr_dimer.txt</span></code> as input to construct the gpcr dimer model with the given parameters. The model assumes whiole gpcr as a 2D disc aligned on the z-axis. Parameters for how to assemble the dimer can be provided in the input file. See Input-file format for more details.</p>
+<p>To run the Disctransformation with the pdb coordinates, provide the pdb file as an input file as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DT</span><span class="o">.</span><span class="n">example_single_run_withpdb</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_dtfile</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/gpcr_dimer.txt&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_pdb</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/GPCR_Helices.pdb&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">output_dir</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/output_gpcr/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Above command generates a Quasi-2D model in both ps and pdb format. The models will be generated in the output_gpcr. Generating PDB models are generally very slow. If you do a large smapling (see below), then avoid generating pdb models duriong the sampling. Instead save the Disctransformation input file (see Input-file format description) for all samples, then choose your model (either by visualizing PS formatted file or using scoring functions!) and then rerun the Disctransformation with the choosen input file.</p>
+<p>To construct the gpcr trimer, use the gpcr_trimer input file. The illustrates how to make a trimer or n-mer model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DT</span><span class="o">.</span><span class="n">example_single_run</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_dtfile</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/gpcr_trimer.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To construct the gpcr trimer with pdb coordinates use the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DT</span><span class="o">.</span><span class="n">example_single_run_withpdb</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_dtfile</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/gpcr_trimer.txt&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_pdb</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/GPCR_Helices.pdb&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">output_dir</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/output_gpcr/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All above Disctransformation runs are single runs with a given input file. This means you need to provide the configuration of the model and Disctransformation just builds it. However, in most cases, you wouldn’t know the model configuration (else why would you need a Disctransformation!!). Disctransformation can sample a large number of models very efficiently (given you dont generate PDB models during sampling!).</p>
+<p>Use the following wrapper over Disctransformation to do the sampling and scoring for a trimer with single interacting mode ‘A’ between the discs. See Input-file format for details of how to coarse/fine grain sampling.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DT</span><span class="o">.</span><span class="n">example_sampling_run</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_dtfile</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/gpcr_trimer_sample_1mode.txt&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_pdb</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/GPCR_Helices.pdb&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">output_dir</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/output_gpcr_ensemble_1mode/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Above example samples all possible models with the resolution specified in the input file. All models will be generated and stored in the output directory. A sampling list is also generated in the output directory for users for debug purpose. This file can be used to coarse/fine grain sampling.</p>
+<p>Use the following to sample and score a trimer with two interacting modes ‘A’ and ‘B’ between discs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DT</span><span class="o">.</span><span class="n">example_sampling_run</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_dtfile</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/gpcr_trimer_sample_2mode.txt&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_pdb</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/GPCR_Helices.pdb&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">output_dir</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/output_gpcr_ensemble_2mode/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">DiscTransformation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Disctransformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input_Format.html">Input File Format</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Requirements.html" title="previous chapter">Requirements</a></li>
+      <li>Next: <a href="Input_Format.html" title="next chapter">Input File Format</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Neelesh Soni.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
