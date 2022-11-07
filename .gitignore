@@ -2,3 +2,5 @@
 *.DS_Store
 .DS_Store
 __pycache__
+.DS_Store
+doc/.DS_Store
