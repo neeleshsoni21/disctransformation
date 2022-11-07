@@ -1,0 +1,27 @@
+
+# DiscTransformation: A software to sample and build models for Quasi-2D systems
+
+## Disctransformation Background
+
+Disctransformation is a software package which packs the 2D objects in a given geometry. The 2D objects can be approximations of molecular objects (entire molecules, domains of molecules, etc.) whose size can be altered by the user. The objects are packed in accordance with a user-specified arrangement that follows a particular interaction topology.
+
+Sampling algorithms such as Monte Carlo, Divide and conquer can be used in conjunction with Disctransformation to get the optimal packing of the objects. Current version supports the brute-force sampling and includes a wrapper for sampling.
+
+Disctransformation can be used for the development of new model representations and combining various scoring schemes to solve the packing optimization problems. The result can be visually inspected and evaluated using the output written by the code.
+
+## Relevance to the molecular architectures
+
+Disctransformation is useful in instances where molecular interactions can be envisaged as quasi-2D problems, or when the focus of the problem is on a cross-section of the structure. For instance, the packing of helices in a bundle. The modes of interactions between helices, each of which could be approximated by a disc, are obtained from experimental sources (e.g., FRET or chemical cross-linking). DiscTransformation has the capacity to distinguish between different vertical orientations of the helices (N above and C below or vice versa could be denoted as parallel and anti-parallel orientations respectively in the input file). The program is hence a quick visual and sampling guide to the possible solutions to the molecular arrangement problem. For further analysis, other (external) scoring schemes could be used to distinguish between the different solutions.
+
+## Installation
+
+There is no need to Install the Disctransformation. You can directly use it either from the command line or directly by accessing api.
+
+## Open index.html for Documentation and API
+
+
+## Running See API
+``
+import Disctransformation as DT
+DT.example_single_run()
+``
