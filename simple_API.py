@@ -21,7 +21,6 @@
 #Load the Disctransformation object
 import Disctransformation as DT
 
-
 DT.example_single_run()
 
 
@@ -32,12 +31,10 @@ DT.example_single_run(
 DT.example_single_run(
 	input_dtfile = './Disctransformation/example/input/gpcr_trimer.txt')
 
-
 DT.example_single_run_withpdb(
 	input_dtfile = './Disctransformation/example/input/gpcr_dimer.txt', 
 	input_pdb = './Disctransformation/example/input/GPCR_Helices.pdb',
 	output_dir = './Disctransformation/example/output_gpcr/')
-
 
 DT.example_single_run_withpdb(
 	input_dtfile = './Disctransformation/example/input/gpcr_trimer.txt', 
@@ -55,4 +52,16 @@ DT.example_sampling_run(
 	input_dtfile = './Disctransformation/example/input/gpcr_trimer_sample_2mode.txt', 
 	input_pdb = './Disctransformation/example/input/GPCR_Helices.pdb',
 	output_dir = './Disctransformation/example/output_gpcr_ensemble_2mode/')
+
+DT.example_single_run_withpdb(
+	input_dtfile = './Disctransformation/example/input/gpcr_dimer.txt', 
+	input_pdb = './Disctransformation/example/input/GPCR_Helices.pdb',
+	output_dir = './Disctransformation/example/output_gpcr/',
+	align_flag = False)
+
+DT.example_sampling_run(
+	input_dtfile = './Disctransformation/example/input/gpcr_trimer_sample_1mode.txt', 
+	input_pdb = './Disctransformation/example/input/GPCR_Helices.pdb',
+	output_dir = './Disctransformation/example/output_gpcr_ensemble_1mode/',
+	align_flag = False)
 

@@ -35,7 +35,7 @@ def example_single_run(input_dtfile=dt_root+'/example/input/gpcr_dimer.txt'):
 
 	return
 
-def example_single_run_withpdb(input_dtfile, input_pdb, output_dir):
+def example_single_run_withpdb(input_dtfile, input_pdb, output_dir, align_flag=True):
 	"""Summary
 	
 	Returns:
@@ -45,26 +45,29 @@ def example_single_run_withpdb(input_dtfile, input_pdb, output_dir):
 	    input_dtfile (TYPE): Description
 	    input_pdb (TYPE): Description
 	    output_dir (TYPE): Description
+	    align_flag (bool, optional): Description
 	"""
 	from core.Initiate_Search import generate_single_configuration_withpdb
-	generate_single_configuration_withpdb(input_dtfile, input_pdb, output_dir)
+	generate_single_configuration_withpdb(input_dtfile, input_pdb, output_dir, align_flag)
 
 	return
 
-def example_sampling_run(input_dtfile, input_pdb, output_dir):
+def example_sampling_run(input_dtfile, input_pdb, output_dir, align_flag=True):
 	"""Summary
 	
 	Args:
 	    input_dtfile (TYPE): Description
 	    input_pdb (TYPE): Description
 	    output_dir (TYPE): Description
+	    align_flag (bool, optional): Description
 	
 	Returns:
 	    TYPE: Description
 	"""
 	from core.Initiate_Search import generate_ensemble_configurations
-	generate_ensemble_configurations(input_dtfile, input_pdb, output_dir)
+	generate_ensemble_configurations(input_dtfile, input_pdb, output_dir, align_flag)
 
 	return
+
 
 

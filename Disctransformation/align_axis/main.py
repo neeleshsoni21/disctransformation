@@ -87,7 +87,7 @@ def alignz(N, T, B):
 	OM = np.transpose(np.matrix( ( T, B, N) ))
 	return OM
    
-def align(inputfile, outputfile, alignaxis, chain):
+def align(inputfile, outputfile, alignaxis, chain, align_flag=True):
 	"""Summary
 	
 	Args:
@@ -95,6 +95,7 @@ def align(inputfile, outputfile, alignaxis, chain):
 	    outputfile (TYPE): Description
 	    alignaxis (TYPE): Description
 	    chain (TYPE): Description
+	    align_flag (bool, optional): Description
 	
 	Returns:
 	    TYPE: Description
@@ -106,6 +107,11 @@ def align(inputfile, outputfile, alignaxis, chain):
 	#mdl,coord_A,coord_All=parsepdb( inputfile, ['A','B'] );
 	mdl,coord_A,coord_A_iter = parsepdb( inputfile, chain );
 	
+	#Skip aligning the pdb if align_flag == False
+	if align_flag!=True:
+		print("Warning: Skiping coordinates re-orientation along zaxis!")
+		return mdl, coord_A_iter
+
 	#Get the axis of rotation of dimers A and B. Axis is \
 	#defined by vector pvA/pvB and initial point pA/pB
 	pvA,pA=getorientation(coord_A);

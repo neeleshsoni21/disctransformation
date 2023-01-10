@@ -81,3 +81,24 @@ Use the following to sample and score a trimer with two interacting modes 'A' an
     >>>     input_pdb = './Disctransformation/example/input/GPCR_Helices.pdb',
     >>>     output_dir = './Disctransformation/example/output_gpcr_ensemble_2mode/')
 
+
+You can skip automatic PCA based alignment of PDB coordinates which re-orient your protein. Use align_flag == False
+
+.. code-block:: python
+
+    >>> DT.example_single_run_withpdb(
+    >>>     input_dtfile = './Disctransformation/example/input/gpcr_dimer.txt', 
+    >>>     input_pdb = './Disctransformation/example/input/GPCR_Helices.pdb',
+    >>>     output_dir = './Disctransformation/example/output_gpcr/',
+    >>>     align_flag = False)
+
+Similarly
+
+.. code-block:: python
+
+    >>> DT.example_sampling_run(
+    >>>     input_dtfile = './Disctransformation/example/input/gpcr_trimer_sample_1mode.txt', 
+    >>>     input_pdb = './Disctransformation/example/input/GPCR_Helices.pdb',
+    >>>     output_dir = './Disctransformation/example/output_gpcr_ensemble_1mode/',
+    >>>     align_flag = False)
+

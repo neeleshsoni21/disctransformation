@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>API &#8212; DiscTransformation 2.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -93,6 +93,22 @@
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_dtfile</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/gpcr_trimer_sample_2mode.txt&#39;</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_pdb</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/GPCR_Helices.pdb&#39;</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">output_dir</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/output_gpcr_ensemble_2mode/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can skip automatic PCA based alignment of PDB coordinates which re-orient your protein. Use align_flag == False</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DT</span><span class="o">.</span><span class="n">example_single_run_withpdb</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_dtfile</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/gpcr_dimer.txt&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_pdb</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/GPCR_Helices.pdb&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">output_dir</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/output_gpcr/&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">align_flag</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similarly</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DT</span><span class="o">.</span><span class="n">example_sampling_run</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_dtfile</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/gpcr_trimer_sample_1mode.txt&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">input_pdb</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/input/GPCR_Helices.pdb&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">output_dir</span> <span class="o">=</span> <span class="s1">&#39;./Disctransformation/example/output_gpcr_ensemble_1mode/&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">align_flag</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

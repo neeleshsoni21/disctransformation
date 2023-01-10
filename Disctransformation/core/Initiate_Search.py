@@ -662,13 +662,14 @@ def generate_single_configuration(dt_ifile):
 	return
 
 #Called by Example_single_run_withpdb
-def generate_single_configuration_withpdb(dt_ifile, input_pdb, output_dir):
+def generate_single_configuration_withpdb(dt_ifile, input_pdb, output_dir, align_flag=True):
 	"""Summary
 	
 	Args:
 	    dt_ifile (TYPE): Description
 	    input_pdb (TYPE): Description
 	    output_dir (TYPE): Description
+	    align_flag (bool, optional): Description
 	
 	Returns:
 	    TYPE: Description
@@ -683,7 +684,7 @@ def generate_single_configuration_withpdb(dt_ifile, input_pdb, output_dir):
 	chain=['ALL']
 
 	from align_axis.main import align
-	mdl, __ = align(input_pdb, outputfile, alignaxis, chain)
+	mdl, __ = align(input_pdb, outputfile, alignaxis, chain, align_flag)
 
 	from transform.DTransform import GetDiscRepresentation, GetDiscRepresentation_nthCA
 	N=1 #Every 4th CA
@@ -697,13 +698,14 @@ def generate_single_configuration_withpdb(dt_ifile, input_pdb, output_dir):
 	return
 
 #Called by Example_sampling_run
-def generate_ensemble_configurations(dt_ifile, input_pdb, output_dir):
+def generate_ensemble_configurations(dt_ifile, input_pdb, output_dir, align_flag=True):
 	"""Summary
 	
 	Args:
 	    dt_ifile (TYPE): Description
 	    input_pdb (TYPE): Description
 	    output_dir (TYPE): Description
+	    align_flag (bool, optional): Description
 	
 	Returns:
 	    TYPE: Description
@@ -718,7 +720,7 @@ def generate_ensemble_configurations(dt_ifile, input_pdb, output_dir):
 	chain = ['ALL']
 
 	from align_axis.main import align
-	mdl, __ = align(input_pdb, outputfile, alignaxis, chain)
+	mdl, __ = align(input_pdb, outputfile, alignaxis, chain, align_flag)
 
 	from transform.DTransform import GetDiscRepresentation, GetDiscRepresentation_nthCA
 	N=1 #Every 4th CA
