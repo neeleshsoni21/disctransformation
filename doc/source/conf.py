@@ -54,7 +54,8 @@ extensions = [
 'sphinx.ext.autosummary',
 #'sphinx_copybutton',
 'sphinx_toggleprompt',
-'sphinx_pyreverse'
+'sphinx_pyreverse',
+'sphinx.ext.githubpages'
 ]
 
 templates_path = ['_templates']
