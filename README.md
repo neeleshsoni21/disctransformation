@@ -18,6 +18,7 @@ Disctransformation is useful in instances where molecular interactions can be en
 There is no need to Install the Disctransformation. You can directly use it either from the command line or directly by accessing api.
 
 ## Open index.html for Documentation and API
+https://neeleshsoni21.github.io/disctransformation/doc/build/html/index.html
 
 
 ## Running Disctransformation
